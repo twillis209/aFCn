@@ -1,10 +1,9 @@
 pandas
-numpy 
+numpy
 cython
-argparse
 pysam
 joblib
 tqdm
 lmfit
-sklearn
+scikit-learn
 pytest
