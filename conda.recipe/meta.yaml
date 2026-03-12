@@ -1,0 +1,34 @@
+package:
+  name: afcn
+  version: 0.1.0
+
+source:
+  path: ..
+
+build:
+  number: 0
+  script: bash {{ RECIPE_DIR }}/build.sh
+
+requirements:
+  host:
+    - python=3.9
+    - cython
+    - numpy          # required by Cython at compile time
+    - pip
+  run:
+    - python=3.9
+    - numpy
+    - pandas
+    - pysam
+    - joblib
+    - tqdm
+    - lmfit
+    - scikit-learn
+
+test:
+  commands:
+    - afcn --help
+
+about:
+  license: MIT
+  summary: Allelic fold change estimation using a nonlinear diploid expression model
