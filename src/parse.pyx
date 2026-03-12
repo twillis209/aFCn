@@ -14,7 +14,7 @@ def is_variant_id_format_valid(eqtl_file):
 
     #get the first character of all rows
     variant_ids = eqtl_file['variant_id'].tolist()
-    firstchar_isdigit = [str(var_id)[0].isalpha() for var_id in variant_ids]
+    firstchar_isdigit = [str(var_id)[0].isdigit() for var_id in variant_ids]
 
     #check if any of these characters is a digit
     if True in firstchar_isdigit:
@@ -31,7 +31,7 @@ def read_eqtls(eqtl_filename):
     '''Used to read in the eqtl file into a pandas dataframe'''
 
     #open the eqtl file
-    eqtl_file = pd.read_csv(eqtl_filename, sep='\t')
+    eqtl_file = pd.read_csv(eqtl_filename, sep='\t').copy()
     
     #drop gene versions
     eqtl_file['gene_id_clean'] = eqtl_file.gene_id.str.split('.').str[0]
@@ -80,7 +80,7 @@ def read_expressions(expressions_filename, eqtl_file, args):
                 if thisgene in chosen_genes:
                     expr_df.append(expr_data)
 
-    expr_dataframe = pd.DataFrame(expr_df, columns=expr_df_cols)
+    expr_dataframe = pd.DataFrame(expr_df, columns=expr_df_cols).copy()
 
     #if no genes were found
     if expr_dataframe.empty:
