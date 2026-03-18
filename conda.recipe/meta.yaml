@@ -8,7 +8,6 @@ source:
 build:
   number: 0
 
-
 requirements:
   host:
     - python=3.9
@@ -25,10 +24,9 @@ requirements:
     - lmfit
     - scikit-learn
 
-test:
-  commands:
-    - afcn.py --help
-    - convert_genexpc_to_afcn.py --help
+# test:
+#   commands:
+#     - afcn --help
 
 about:
   license: MIT

@@ -1,12 +1,12 @@
 name: afcn
 channels:
   - conda-forge
+  - bioconda
 dependencies:
   - python=3.9
   - pandas
   - numpy
   - cython
-  - pysam
   - joblib
   - tqdm
   - lmfit
@@ -15,3 +15,4 @@ dependencies:
   - pip
   - pip:
     - argparse
+    - pysam
