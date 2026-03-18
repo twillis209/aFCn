@@ -5,25 +5,10 @@ set -euo pipefail
 cd "${SRC_DIR}/src"
 python setup.py build_ext --inplace
 
-# Install afcn.py and compiled .so files as a package in site-packages
-AFCN_PKG="${SP_DIR}/afcn"
-mkdir -p "${AFCN_PKG}"
+# Install .so files directly into site-packages so bare 'import calc' etc. resolves from anywhere
+cp calc*.so parse*.so thread_wrapper*.so "${SP_DIR}/"
 
-cp afcn.py calc*.so parse*.so thread_wrapper*.so "${AFCN_PKG}/"
-
-# __init__.py so Python treats it as a package (not strictly needed, but tidy)
-touch "${AFCN_PKG}/__init__.py"
-
-# Entry-point script: cd into the package dir so bare 'import calc' resolves
-mkdir -p "${PREFIX}/bin"
-cat > "${PREFIX}/bin/afcn" << 'EOF'
-#!/bin/bash
-exec python -c "
-import sys, os
-pkg = os.path.join(sys.prefix, 'lib', 'python' + '.'.join(map(str, sys.version_info[:2])), 'site-packages', 'afcn')
-sys.path.insert(0, pkg)
-os.chdir(pkg)
-exec(open(os.path.join(pkg, 'afcn.py')).read())
-" -- "$@"
-EOF
-chmod +x "${PREFIX}/bin/afcn"
+# Install scripts to bin/ so they are on PATH
+cp "${SRC_DIR}/src/afcn.py" "${PREFIX}/bin/afcn.py"
+cp "${SRC_DIR}/convert_genexpc_to_afcn.py" "${PREFIX}/bin/convert_genexpc_to_afcn.py"
+chmod +x "${PREFIX}/bin/afcn.py" "${PREFIX}/bin/convert_genexpc_to_afcn.py"

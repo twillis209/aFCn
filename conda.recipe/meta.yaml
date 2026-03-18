@@ -7,7 +7,7 @@ source:
 
 build:
   number: 0
-  script: bash {{ RECIPE_DIR }}/build.sh
+
 
 requirements:
   host:
@@ -27,7 +27,8 @@ requirements:
 
 test:
   commands:
-    - afcn --help
+    - afcn.py --help
+    - convert_genexpc_to_afcn.py --help
 
 about:
   license: MIT
