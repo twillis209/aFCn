@@ -14,10 +14,11 @@ def is_variant_id_format_valid(eqtl_file):
 
     #get the first character of all rows
     variant_ids = eqtl_file['variant_id'].tolist()
+
     firstchar_isdigit = [str(var_id)[0].isdigit() for var_id in variant_ids]
 
     #check if any of these characters is a digit
-    return any(firstchar_isdigit)
+    return not any(firstchar_isdigit)
 
 
 def read_eqtls(eqtl_filename):
