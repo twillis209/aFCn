@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=64", "cython", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "afcn"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
+    "pysam",
+    "joblib",
+    "tqdm",
+    "lmfit",
+    "scikit-learn",
+]
