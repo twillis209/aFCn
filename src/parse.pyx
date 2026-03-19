@@ -36,7 +36,7 @@ def read_eqtls(eqtl_filename):
     #drop gene versions
     eqtl_file['gene_id_clean'] = eqtl_file.gene_id.str.split('.').str[0]
     
-    if is_variant_id_format_valid(eqtl_file) == False:
+    if is_variant_id_format_valid(eqtl_file) == True:
 
         raise Exception('''Variant IDs must not begin with a digit, 
                 reformat your vcf and EQTL matrix''')
