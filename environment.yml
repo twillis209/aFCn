@@ -12,7 +12,8 @@ dependencies:
   - lmfit
   - scikit-learn
   - pytest
+  - pysam
   - pip
   - pip:
     - argparse
-    - pysam
+    - -e .

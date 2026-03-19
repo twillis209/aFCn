@@ -17,13 +17,7 @@ def is_variant_id_format_valid(eqtl_file):
     firstchar_isdigit = [str(var_id)[0].isdigit() for var_id in variant_ids]
 
     #check if any of these characters is a digit
-    if True in firstchar_isdigit:
-
-        return True
-
-    else:
-
-        return False
+    return any(firstchar_isdigit)
 
 
 def read_eqtls(eqtl_filename):
@@ -36,11 +30,9 @@ def read_eqtls(eqtl_filename):
     #drop gene versions
     eqtl_file['gene_id_clean'] = eqtl_file.gene_id.str.split('.').str[0]
     
-    if is_variant_id_format_valid(eqtl_file) == True:
-
+    if not is_variant_id_format_valid(eqtl_file):
         raise Exception('''Variant IDs must not begin with a digit, 
                 reformat your vcf and EQTL matrix''')
- 
 
     return eqtl_file
 
