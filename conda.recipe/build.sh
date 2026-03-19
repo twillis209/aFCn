@@ -10,5 +10,5 @@ cp calc*.so parse*.so thread_wrapper*.so "${SP_DIR}/"
 
 # Install scripts to bin/ so they are on PATH
 cp "${SRC_DIR}/src/afcn.py" "${PREFIX}/bin/afcn.py"
-cp "${SRC_DIR}/convert_genexpc_to_afcn.py" "${PREFIX}/bin/convert_genexpc_to_afcn.py"
+cp "${SRC_DIR}/src/convert_genexpc_to_afcn.py" "${PREFIX}/bin/convert_genexpc_to_afcn.py"
 chmod +x "${PREFIX}/bin/afcn.py" "${PREFIX}/bin/convert_genexpc_to_afcn.py"
